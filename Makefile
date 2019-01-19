@@ -17,10 +17,9 @@ $(NAME)_test: lib$(NAME).so ./src/$(NAME)_test.cpp
 	$(CC) ./src/$(NAME)_test.cpp -I./lib -I./inc -L. -l$(NAME) -o $@
 
 lib$(NAME).so: lib$(NAME).so.$(VERSION)
-	ldconfig -v -n .
 	ln -sf lib$(NAME).so.$(VERSION) lib$(NAME).so
 
-lib$(NAME).so.$(VERSION): lib/libwaracle.cpp lib/filebase.cpp lib/fileinput.cpp lib/fileoutput.cpp
+lib$(NAME).so.$(VERSION): lib/libwaracle.cpp lib/fileinput.cpp lib/fileoutput.cpp
 	$(CC) $(LDFLAGS) $(CFLAGS) $(INC) $^ -o $@
 
 clean:

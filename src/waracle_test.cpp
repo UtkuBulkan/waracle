@@ -1,7 +1,10 @@
 #include <iostream>
 #include "libwaracle.h"
 
-int unittest_1()
+#define POSITIVE_TEST 0
+#define NEGATIVE_TEST -1
+
+int unittest_1(int expected)
 {
 	std::string input_filename("unittest/input");
 	std::string output_filename("unittest/output");
@@ -14,23 +17,37 @@ int unittest_1()
 
 		/* Calling external function "analyse(...)" from the waracle library */
 		result = analyse(input_str.c_str(), output_str.c_str());
-		std::cout << input_str << ": " << result << std::endl;
+		/* std::cout << input_str << ": " << result << std::endl; */
 	}
 
 	return 0;
 }
 
-int unittest_2()
+int unittest_2(int expected)
 {
-	/* Calling external function "analyse(...)" with invalid arguments */
-	std::cout << "unittest/input10 : " << analyse(NULL, "bb") << std::endl;
+	int result = analyse(NULL, "bb");
+	/* Calling external function "analyse(...)"
+	 * with invalid arguments for negative testing
+	 * std::cout << "unittest/input10.txt: " << result << std::endl;
+	 */
 
-	return 0;
+	return result;
+}
+
+int check_unittest(int result, int expected)
+{
+	int retcode = (result == expected);
+	retcode ? std::cout << "PASSED" << std::endl : std::cout << "FAILED" << std::endl;
+	return retcode;
 }
 
 int main() {
-	unittest_1();
-	unittest_2();
+	std::cout << "unittest suite 1 : ";
+	check_unittest(unittest_1(POSITIVE_TEST), POSITIVE_TEST);
+
+	std::cout << "unittest suite 2 : ";
+	check_unittest(unittest_2(NEGATIVE_TEST), NEGATIVE_TEST);
+
 	return 0;
 }
 
