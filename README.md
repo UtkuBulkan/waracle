@@ -2,7 +2,7 @@
 this library handle some specific file input &amp; output operations
 
 
-For compilation on Mac OS in the root directory for the project :
+For compilation on Mac OS, follow the instructions below :
 
 ```
 # mkdir waracle;
