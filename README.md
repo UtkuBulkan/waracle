@@ -9,6 +9,7 @@ For compilation on Mac OS in the root directory for the project :
 # cd waracle
 # git clone https://github.com/UtkuBulkan/waracle.git .
 # make
+# make test
 ```
 
 And the logs enabled output should be :
